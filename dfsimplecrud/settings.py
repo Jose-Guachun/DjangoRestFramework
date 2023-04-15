@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    #'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,9 +60,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-#CORS_ALLOWED_ORIGINS = [
-#    "http://localhost:8080",
-#]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+]
 
 ROOT_URLCONF = 'dfsimplecrud.urls'
 
@@ -87,10 +87,12 @@ WSGI_APPLICATION = 'dfsimplecrud.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+bd_data='postgresql://postgres:1234@localhost:5432/drfapi'
+if not DEBUG:
+    bd_data=os.environ.get('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:1234@localhost:5432/drfapi',        
+        default=bd_data,     
         conn_max_age=600    
     )
 }
