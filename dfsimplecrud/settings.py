@@ -87,7 +87,6 @@ WSGI_APPLICATION = 'dfsimplecrud.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': dj_database_url.config(
         default='postgresql://postgres:1234@localhost:5432/drfapi',        
